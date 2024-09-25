@@ -51,6 +51,9 @@ Esta seção mostra as funcionalidades que o site precisa ter.
 -   [rf8] - Chat;
 -   [rf9] - Poder deletar suas próprias postagens e perfil;
 -   [rf10] - Administradores poderem deletar postagens e perfil;
+-   [rf11] - Login com o Google;
+-   [rf12] - Contas poderem ser privadas;
+-   [rf13] - Postagens poderem bloquear comentários
 
 ### Requisitos Não Funcionais
 
@@ -106,5 +109,9 @@ Arquivo com configurações de estilo na IDE, para o código manter o mesmo padr
 ### .gitignore
 
 Arquivo que faz com que arquivos não necessários não sejam enviados ao Github.
+
+### casos-de-uso.png
+
+Caso de uso.
 
 ## Imagens
