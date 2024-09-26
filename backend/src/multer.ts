@@ -6,9 +6,38 @@ const postStorage = multer.diskStorage({
         cb(null, "./src/public/posts");
     },
     filename: (req, file, cb) => {
-        const fileName = `${Date.now()}-${crypto.randomUUID()}-${path.extname(file.originalname)}`;
+        const fileName = `${Date.now()}-${crypto.randomUUID()}-${path.extname(
+            file.originalname
+        )}`;
         cb(null, fileName);
-    }
+    },
+});
+
+const filesAccepted = [
+    "image/png",
+    "image/jpeg",
+    "image/jpg",
+    "image/webp",
+    "image/avif",
+    "image/gif",
+    "image/svg+xml",
+    "audio/mpeg",
+    "audio/ogg",
+    "audio/wav",
+    "audio/webm",
+    "video/mp4",
+    "video/webm",
+    "application/pdf",
+];
+
+export const uploadPost = multer({
+    storage: postStorage,
+    fileFilter: (req, file, cb) => {
+        if (!filesAccepted.includes(file.mimetype)) {
+            return cb(null, false);
+        }
+        cb(null, true);
+    },
 });
 
 const userStorage = multer.diskStorage({
@@ -16,12 +45,11 @@ const userStorage = multer.diskStorage({
         cb(null, "./src/public/users");
     },
     filename: (req, file, cb) => {
-        const fileName = `${Date.now()}-${crypto.randomUUID()}-${path.extname(file.originalname)}`;
+        const fileName = `${Date.now()}-${crypto.randomUUID()}-${path.extname(
+            file.originalname
+        )}`;
         cb(null, fileName);
-    }
+    },
 });
 
-
-export const uploadPost = multer({storage: postStorage});
-
-export const uploadUsers = multer({storage: userStorage});
+export const uploadUsers = multer({ storage: userStorage });

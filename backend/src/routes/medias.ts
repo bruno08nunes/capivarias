@@ -14,6 +14,14 @@ router.post("/posts/media/post", uploadPost.array("files"), (req: Request, res: 
         });
     }
 
+    if (req.files.length === 0) {
+        return res.status(400).json({
+            success: false,
+            message: "Arquivos inválidos enviados",
+            data: {}
+        });
+    }
+
     const params = req.files.map((file) => [
         req.body.post,
         file.filename
