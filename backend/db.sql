@@ -9,7 +9,7 @@ create table users(
     email varchar(255) not null unique,
     password varchar(255) not null,
     birthday date not null,
-    bio varchar(200),
+    bio varchar(220),
     profile_picture varchar(255),
     role enum("A", "U") default "U",
     is_private boolean default false,
@@ -21,9 +21,9 @@ create table users(
 
 create table posts(
     id int primary key auto_increment,
-    content varchar(200),
+    content varchar(220),
     user_id int not null,
-    is_private boolean default false,
+    is_private boolean,
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp,
     foreign key (user_id) references users(id) on delete cascade,
@@ -33,9 +33,9 @@ create table posts(
 create table posts_medias(
     id int primary key auto_increment,
     post_id int not null,
-    type enum("img", "video", "audio") not null,
     url varchar(255) not null,
-    foreign key (post_id) references posts(id) on delete cascade
+    foreign key (post_id) references posts(id) on delete cascade,
+    index (post_id)
 );
 
 create table amazings(
@@ -51,7 +51,7 @@ create table comments(
     id int primary key auto_increment,
     user_id int,
     post_id int,
-    content varchar(200) not null,
+    content varchar(220) not null,
     foreign key (user_id) references users(id) on delete cascade,
     foreign key (post_id) references posts(id) on delete cascade,
     created_at timestamp default current_timestamp,
