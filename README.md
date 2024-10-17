@@ -114,4 +114,21 @@ Arquivo que faz com que arquivos não necessários não sejam enviados ao Github
 
 Caso de uso.
 
+## Design
+
+### Paleta de Cores
+
+*   #05A63A - Verde Escuro
+*   #05A63A - Verde Escuro (60% de opacidade)
+*   #A1F7A1 - Verde Claro
+*   #9C726D - Marrom
+
+### Protótipo do Figma
+
+[Protótipo Capivárias](https://www.figma.com/design/zIXzGiK1hOajPYg1ZHgwvv/Capivarias?node-id=0-1&t=WYirm8OJps1h4PBQ-1)
+
+### Fontes
+
+*   Inter
+
 ## Imagens
