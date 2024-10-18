@@ -1,0 +1,28 @@
+.sidebar {
+    background-color: var(--verde-claro);
+    max-width: 250px;
+    width: 100%;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    position: fixed;
+    inset: 0;
+    right: auto;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 100px;
+    width: 100%;
+}
+
+.sidebarEnd {
+    margin-top: auto;
+}

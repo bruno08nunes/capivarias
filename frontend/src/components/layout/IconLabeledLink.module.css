@@ -1,0 +1,15 @@
+.link {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.3em;
+    color: var(--marrom);
+    transition: .4s;
+    padding: 5px 15px;
+    border-radius: 50px;
+    &:hover {
+        background-color: var(--marrom);
+        color: white;
+    }
+}
