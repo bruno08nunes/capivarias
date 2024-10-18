@@ -1,10 +1,10 @@
 import style from "./IconLabeledLink.module.css";
 
-const IconLabeledLink = ({ icon }) => {
+const IconLabeledLink = ({ icon: {size: iconSize, name: iconName, label: iconLabel} }) => {
     return (
         <a href="#" className={style.link}>
-            <span style={{fontSize: icon?.size ?? 40}} className="material-symbols-outlined">{icon?.name}</span>
-            <span>{icon.label}</span>
+            <span style={{fontSize: iconSize ?? 40}} className="material-symbols-outlined">{iconName}</span>
+            {iconLabel && <span>{iconLabel}</span>}
         </a>
     );
 };

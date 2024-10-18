@@ -1,6 +1,8 @@
+/* Importação Fonte do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
+    /* Variáveis Globais */
     --verde-escuro: #05A63A;
     --verde-claro: #A1F7A1;
     --marrom: #9C726D;
@@ -8,6 +10,7 @@
 }
 
 * {
+    /* Reset */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
