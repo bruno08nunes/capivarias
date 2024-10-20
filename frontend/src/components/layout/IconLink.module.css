@@ -1,0 +1,24 @@
+.link {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: .4s;
+    border-radius: 50px;
+    border: none;
+    background-color: transparent;
+    padding: 5px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--bg-hover-color);
+        color: white;
+    }
+    &[class*="circle"] {
+        padding: 10px;
+    }
+    &[class*="smallCircle"] {
+        padding: 5px;
+    }
+}

@@ -1,0 +1,32 @@
+.main {
+    margin: auto;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.main div {
+    width: 100%;
+}
+
+.main img {
+    width: 80%;
+}
+
+.main h2 {
+    color: var(--marrom);
+    background-color: rgb(from var(--verde-claro) r g b / 0.8);
+    font-size: 3em;
+    width: 100%;
+    max-width: 250px;
+}
+
+.main p {
+    font-size: 1.3em;
+    padding-top: 10px;
+    color: var(--verde-escuro);
+}
