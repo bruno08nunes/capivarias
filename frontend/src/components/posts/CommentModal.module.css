@@ -1,0 +1,56 @@
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    max-width: 600px;
+    width: 100%;
+    border: 4px solid var(--verde-claro);
+    padding: 15px;
+
+    background-color: var(--branco);
+    border-radius: 20px;
+    color: rgb(from var(--verde-escuro) r g b / 0.6);
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.301);
+}
+
+.postData {
+    display: flex;
+    gap: 15px;
+    font-size: 1.2em;
+}
+
+.userData {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    & :first-child {
+        color: var(--verde-escuro);
+    }
+    & :nth-child(2) {
+        font-size: 0.9em;
+    }
+}
+
+.post {
+    border-inline-start: 5px solid var(--verde-claro);
+    width: 95%;
+    margin-inline-start: auto;
+    padding-inline-start: 25px;
+    font-size: 1.2em;
+}
+
+.form {
+    font-size: 1.3em;
+}

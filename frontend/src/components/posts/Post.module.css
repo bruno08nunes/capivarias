@@ -12,13 +12,6 @@
     gap: 15px;
 }
 
-.profile {
-    max-width: 80px;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    background-color: var(--verde-claro);
-}
-
 .userData {
     display: flex;
     flex-direction: column;
@@ -48,4 +41,21 @@
     display: flex;
     justify-content: end;
     gap: 15px;
+}
+
+.dropdownContent {
+    background-color: var(--branco);
+    border: 3px solid var(--verde-claro);
+    padding: 5px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: stretch;
+}
+
+.dropdownItems {
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
 }

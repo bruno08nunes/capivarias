@@ -1,4 +1,4 @@
-.link {
+.button {
     display: flex;
     gap: 15px;
     align-items: center;
@@ -11,8 +11,8 @@
     padding: 5px 15px;
     font-size: 1em;
     cursor: pointer;
-    &:hover {
-        background-color: var(--bg-hover-color);
+    &:hover, &[class*="active"], &:focus {
+        background-color: var(--bg-hover-color, var(--verde-escuro));
         color: white;
     }
     &[class*="circle"] {
@@ -20,5 +20,8 @@
     }
     &[class*="smallCircle"] {
         padding: 5px;
+    }
+    &[class*="noGap"] {
+        gap: 0;
     }
 }

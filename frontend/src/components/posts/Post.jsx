@@ -1,18 +1,38 @@
 import style from "./Post.module.css";
-import IconLink from "../layout/IconLink";
+import IconButton from "../layout/IconButton";
+import ProfilePicture from "./ProfilePicture";
+import * as Dialog from "@radix-ui/react-dialog";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-const Post = () => {
+const Post = ({ id }) => {
     return (
-        <article className={style.post}>
+        <article className={style.post} id={id}>
             <div className={style.header}>
-                <img src="logo.png" alt="" className={style.profile} />
+                <ProfilePicture src={"logo.png"} />
                 <div className={style.userData}>
                     <span>Capivárias</span>
                     <span>@capivarias</span>
                 </div>
                 <div className={style.postData}>
                     <time dateTime="">10h</time>
-                    <IconLink iconName="more_horiz" iconSize={35} className={"smallCircle"} />
+                    <DropdownMenu.Root>
+                        <IconButton
+                            iconName="more_horiz"
+                            iconSize={35}
+                            className={"smallCircle"}
+                            asChild
+                        >
+                            <DropdownMenu.Trigger></DropdownMenu.Trigger>
+                        </IconButton>
+                        <DropdownMenu.Content className={style.dropdownContent}>
+                            <DropdownMenu.Item className={style.dropdownItems}>
+                                <IconButton iconName="block" iconSize={25} iconLabel="Bloquear Usuário" />
+                            </DropdownMenu.Item>
+                            <DropdownMenu.Item className={style.dropdownItems}>
+                                <IconButton iconName="flag" iconSize={25} iconLabel="Denunciar" />
+                            </DropdownMenu.Item>
+                        </DropdownMenu.Content>
+                    </DropdownMenu.Root>
                 </div>
             </div>
             <p className={style.message}>
@@ -22,8 +42,21 @@ const Post = () => {
                 voluptatibus officiis tenetur possimus eveniet non!
             </p>
             <div className={style.buttons}>
-                <IconLink iconName="comment" iconSize={40}  className={"circle"} />
-                <IconLink iconName="favorite" iconSize={40} className={"circle"} />
+                <IconButton
+                    iconName="comment"
+                    iconSize={40}
+                    className={"circle"}
+                    aria-label="Comentar"
+                    asChild
+                >
+                    <Dialog.Trigger></Dialog.Trigger>
+                </IconButton>
+                <IconButton
+                    iconName="favorite"
+                    iconSize={40}
+                    className={"circle"}
+                    aria-label="Curtir"
+                />
             </div>
         </article>
     );

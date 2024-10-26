@@ -1,0 +1,53 @@
+.divInput {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.divTextarea {
+    flex: 1;
+    display: flex;
+    position: relative;
+}
+
+.divInput textarea {
+    background-color: transparent;
+    resize: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    outline: none;
+    font-size: 1em;
+    color: var(--verde-escuro);
+    flex: 1;
+    padding: 10px;
+    caret-color: currentColor;
+    transition: .3s;
+    overflow: hidden;
+}
+
+.divInput textarea:is(:hover, :focus) {
+    border-bottom: 1px solid var(--verde-escuro);
+}
+
+.divInput ::placeholder {
+    color: rgb(from var(--verde-escuro) r g b / 0.6);
+}
+
+.divTextarea span {
+    position: absolute;
+    top: calc(100% + 0.3em);
+    right: 0;
+    font-size: 0.8em;
+}
+
+.configs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}

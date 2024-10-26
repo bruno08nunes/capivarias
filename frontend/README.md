@@ -17,22 +17,29 @@ Os componentes react podem também receber CSS próprios feitos com Módulos CSS
 
 Essa pasta contem os componententes de layout da aplicação, que podem ser replicados em diversos lugares.
 
-#### IconLink
+#### IconButton
 
 Esse componente é um link que contém um icone do Google Icon.
 
 Recebe como parâmetros:
-*   iconName - Nome do ícone na biblioteca
-*   iconLabel - Nome que aparece ao lado do ícone (opcional)
-*   iconSize - Tamanho do ícone (opcional)
-*   asChild - Valor booleano que indica que o filho passado será usado como componente ao invés de como filho (Slot da biblioteca Radix)
-*   props - Outras props que serão passadas ao elemento
+
+-   iconName - Nome do ícone na biblioteca
+-   iconLabel - Nome que aparece ao lado do ícone (opcional)
+-   iconSize - Tamanho do ícone (opcional)
+-   asChild - Valor booleano que indica que o filho passado será usado como componente ao invés de como filho (Slot da biblioteca Radix)
+-   props - Outras props que serão passadas ao elemento
 
 #### sidebar
 
 Sidebar principal da aplicação.
 
 Não recebe nenhum parâmetro e se posiciona na área esquerda da tela com position fixed.
+
+#### Button
+
+Botão padrão com estilização própria.
+
+Pode receber como parâmetro children, classname e outras props.
 
 ### routes
 
@@ -81,3 +88,29 @@ Componentes ligados aos posts
 #### Post
 
 Post principal
+
+Recebe como parâmetro um id
+
+#### NewPostForm
+
+Seção de criar um novo post
+
+#### NewPost
+
+Informações bases para um novo post, usado para post e comentários
+
+#### ProfilePicture
+
+Foto de perfil do usuário
+
+Recebe como parâmetro o src e o alt da imagem.
+
+#### Recording
+
+Exibe o tempo de gravação do áudio
+
+Recebe como parâmetro o tempo de gravação.
+
+#### CommentModal
+
+Modal de Comentário de posts.
