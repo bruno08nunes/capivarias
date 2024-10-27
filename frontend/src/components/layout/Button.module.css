@@ -14,7 +14,7 @@
         background-color: color-mix(in srgb, var(--verde-claro) 90%, black);
     }
 
-    &:focus {
+    &:focus-visible {
         border: 2px solid black;
     }
 }

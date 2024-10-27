@@ -3,8 +3,15 @@ import IconButton from "../layout/IconButton";
 import ProfilePicture from "./ProfilePicture";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useState } from "react";
 
 const Post = ({ id }) => {
+    const [isFavorited, setIsFavorited] = useState(false);
+
+    const handleFavorite = (e) => {
+        setIsFavorited(state => !state);
+    }
+
     return (
         <article className={style.post} id={id}>
             <div className={style.header}>
@@ -52,10 +59,11 @@ const Post = ({ id }) => {
                     <Dialog.Trigger></Dialog.Trigger>
                 </IconButton>
                 <IconButton
-                    iconName="favorite"
+                    iconName={"favorite"}
                     iconSize={40}
-                    className={"circle"}
+                    className={"circle" + " " + (isFavorited && "favorited")}
                     aria-label="Curtir"
+                    onClick={handleFavorite}
                 />
             </div>
         </article>

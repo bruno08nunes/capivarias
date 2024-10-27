@@ -82,6 +82,7 @@ O objetivo é criar uma rede social para desenvolver as habilidades em React, No
         -   Vite
         -   React Router Dom
         -   Toaster
+        -   Google Icons
     -   Backend:
         -   Node
         -   Express
