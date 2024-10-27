@@ -14,6 +14,7 @@ import NotificationPage from "./components/routes/NotificationPage.jsx";
 import SearchPage from "./components/routes/SearchPage.jsx";
 import SettingsPage from "./components/routes/SettingsPage.jsx";
 import ErrorPage from "./components/routes/ErrorPage.jsx";
+import UserContextProvider from "./contexts/UserContext.jsx";
 
 const router = createBrowserRouter([
     {
@@ -47,8 +48,8 @@ const router = createBrowserRouter([
                     },
                     {
                         path: "*",
-                        element: <ErrorPage />
-                    }
+                        element: <ErrorPage />,
+                    },
                 ],
             },
             {
@@ -65,6 +66,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <UserContextProvider>
+            <RouterProvider router={router} />
+        </UserContextProvider>
     </StrictMode>
 );

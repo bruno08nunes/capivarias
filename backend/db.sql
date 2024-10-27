@@ -19,6 +19,9 @@ create table users(
     index (email, capy_code)
 );
 
+insert into users (username, capy_code, email, password, birthday, role)
+value ("Bruno", "bruno08nunes", "bruno@email.com", "admin123", "2008-03-01", "A");
+
 create table posts(
     id int primary key auto_increment,
     content varchar(220),

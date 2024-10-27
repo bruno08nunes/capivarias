@@ -5,9 +5,24 @@
 1.  [Sumário](#sumário)
 1.  [Componentes](#componentes)
     1.  [layout](#layout)
-        1. [IconLabeledLink](#iconlabeledlink)
+        1. [IconButton](#iconbutton)
         1. [Sidebar](#sidebar)
+        1. [Button](#button)
     1.  [routes](#routes)
+    1.  [posts](#posts)
+        1. [Post](#post)
+        1. [NewPostForm](#newpostform)
+        1. [NewPost](#newpost)
+        1. [ProfilePicture](#profilepicture)
+        1. [Recording](#recording)
+        1. [CommentModal](#commentmodal)
+1.  [Hooks](#hooks)
+    1.  [useAuthRedirect](#useauthredirect)
+    1.  [useUser](#useuser)
+1.  [Contexts](#contexts)
+    1.  [UserContext](#usercontext)
+1.  [Utilities](#utilities)
+    1.  [getUserLoggedIn](#getuserloggedin)
 
 ## Componentes
 
@@ -114,3 +129,29 @@ Recebe como parâmetro o tempo de gravação.
 #### CommentModal
 
 Modal de Comentário de posts.
+
+## Hooks
+
+### useAuthRedirect
+
+Recebe o id de um usuário. Caso seja passado um valor nulo, redireciona para a página de cadastro (Register.jsx)
+
+### useUser
+
+Retorna o valor do contexto UserContext. Caso nesse valor tenha apenas o id do usuário, faz uma requisição ao servidor para pegar os dados restantes.
+
+## Contexts
+
+### UserContext
+
+Contém:
+*   user - Objeto do usuário com as propriedades:
+    *   id - ID do usuário pego pelo localStorage
+    *   name - Nome do usuário
+*   setUser
+
+## Utilities
+
+### getUserLoggedIn
+
+Pega o id do usuário. Por enquanto, acessa o localStorage.

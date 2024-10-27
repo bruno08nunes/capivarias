@@ -1,8 +1,14 @@
 import style from "./Sidebar.module.css";
 import IconButton from "./IconButton";
 import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 const Sidebar = () => {
+    const {user} = useUser();
+    const handleLogout = () => {
+        user.logout();
+    }
+
     return (
         <aside className={style.sidebar}>
             <Link to="/" className={style.link}>
@@ -15,20 +21,20 @@ const Sidebar = () => {
                 <Link to="/search" />
             </IconButton>
             <IconButton iconLabel="Configurações" iconName="settings" asChild>
-                <Link to="/settings" />
+                <Link to={`/settings/${user.id}`} />
             </IconButton>
             <IconButton
                 iconLabel="Notificações"
                 iconName="Notifications"
                 asChild
             >
-                <Link to="/notifications" />
+                <Link to={`/notifications/${user.id}`} />
             </IconButton>
             <IconButton iconLabel="Perfil" iconName="account_circle" asChild>
-                <Link to="/account" />
+                <Link to={`/account/${user.id}`} />
             </IconButton>
             <div className={style.sidebarEnd}>
-                <IconButton iconLabel="Sair" iconName="logout" />
+                <IconButton iconLabel="Sair" iconName="logout" onClick={handleLogout} />
             </div>
         </aside>
     );
