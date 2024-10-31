@@ -1,0 +1,9 @@
+.header {
+    background-color: var(--verde-claro);
+    padding: 35px;
+    text-align: center;
+
+    & img {
+        max-width: 100px;
+    }
+}

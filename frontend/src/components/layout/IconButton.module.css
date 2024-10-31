@@ -15,6 +15,10 @@
         background-color: var(--bg-hover-color, var(--verde-escuro));
         color: white;
     }
+    &[class*="active"]:is(:hover, :focus-visible) {
+        background-color: transparent;
+        color: inherit;
+    }
     &[class*="circle"] {
         padding: 10px;
     }

@@ -1,0 +1,9 @@
+.form {
+    border: 5px solid var(--verde-claro);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1.3em;
+    border-radius: 20px;
+}

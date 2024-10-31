@@ -7,7 +7,12 @@
     1.  [layout](#layout)
         1. [IconButton](#iconbutton)
         1. [Sidebar](#sidebar)
-        1. [Button](#button)
+        1. [Header](#header)
+        1. [Form](#form)
+            1. [Button](#button)
+            1. [Form](#form-1)
+            1. [Input](#input)
+            1. [PasswordInput](#passwordinput)
     1.  [routes](#routes)
     1.  [posts](#posts)
         1. [Post](#post)
@@ -50,11 +55,39 @@ Sidebar principal da aplicação.
 
 Não recebe nenhum parâmetro e se posiciona na área esquerda da tela com position fixed.
 
-#### Button
+#### Header
+
+Cabeçalho da página de Login e Register.
+
+Não recebe parâmetros
+
+#### form
+
+Pasta com os componentes de layout de formulário
+
+##### Button
 
 Botão padrão com estilização própria.
 
 Pode receber como parâmetro children, classname e outras props.
+
+##### Form
+
+Formulário com estilizações.
+
+Recebe os parâmetros children e handleSubmit
+
+##### Input
+
+Input que pode vir junto com uma label opcional.
+
+Pode receber o texto da label, className e outras props de input.
+
+##### PasswordInput
+
+Input de senha, que vem junto com um botão para alterar o tipo para texto.
+
+Recebe como parâmetro os atributos do componente Input
 
 ### routes
 
@@ -139,6 +172,21 @@ Recebe o id de um usuário. Caso seja passado um valor nulo, redireciona para a 
 ### useUser
 
 Retorna o valor do contexto UserContext. Caso nesse valor tenha apenas o id do usuário, faz uma requisição ao servidor para pegar os dados restantes.
+
+### useFormProps
+
+Gera props para um input
+
+Recebe:
+*   O valor que recebera o name e o id
+*   Valor inicial do input (opcional)
+
+Retorna:
+*   InputProps - Objeto com as propriedades:
+    *   value - Contém o estado com o valor atual do input
+    *   onInput - Faz com que altere o valor a cada digitação
+    *   id - Id do input
+    *   name - name do input, com o mesmo valor do id
 
 ## Contexts
 

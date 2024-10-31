@@ -8,9 +8,7 @@ const validationRegister = [
     body("username").isLength({min: 3, max: 50}).withMessage("O nome do usuário deve ter entre 3 e 50 caracteres"),
     body("capyCode").isLength({min: 5, max: 30}).withMessage("O Capy Code deve ter entre 5 e 30 caracteres"),
     body("email").isEmail().withMessage("Insira um email válido"),
-    body("password").isLength({min: 8, max: 25}).withMessage("A senha deve ter entre 8 e 25 caracteres").bail().custom((value) => {
-        
-    }),
+    body("password").isLength({min: 8, max: 25}).withMessage("A senha deve ter entre 8 e 25 caracteres"),
     body("birthday").isDate({format: "YYYY-MM-DD"}).withMessage("Data inválida").bail().custom((value) => {
         const now = new Date();
         const birthday = new Date(value);
@@ -29,7 +27,7 @@ router.post("/users/register", validationRegister, (req: Request, res: Response)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({
-            message: "Informações Inválidas",
+            message: errors.array()[0].msg,
             success: false,
             data: errors.array()
         });
@@ -71,7 +69,7 @@ router.post("/users/login", validationLogin, (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({
-            message: "Informações Inválidas",
+            message: errors.array()[0].msg,
             success: false,
             data: errors.array()
         });

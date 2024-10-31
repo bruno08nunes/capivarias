@@ -1,11 +1,11 @@
 import style from "./NewPost.module.css";
-import Button from "../layout/Button";
+import Button from "../layout/form/Button";
 import IconButton from "../layout/IconButton";
 import ProfilePicture from "./ProfilePicture";
 import { useState, useRef, useEffect } from "react";
 import Recording from "./Recording";
 
-const NewPost = ({placeholder}) => {
+const NewPost = ({ placeholder }) => {
     // States
     const [text, setText] = useState("");
     const [isRecording, setIsRecording] = useState(false);
@@ -52,7 +52,7 @@ const NewPost = ({placeholder}) => {
         if (e.key === "Enter") {
             e.preventDefault();
         }
-    }
+    };
 
     const handleStartRecord = (e) => {
         setIsRecording((state) => !state);
@@ -60,7 +60,7 @@ const NewPost = ({placeholder}) => {
 
     const handleFileSelect = (e) => {
         fileInputRef.current?.click();
-    }
+    };
 
     // Variables
     const remainingText = text.length > 0 && 220 - text.length;

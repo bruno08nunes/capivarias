@@ -6,7 +6,7 @@ const useUser = () => {
 
     useEffect(() => {
         const getUserData = async () => {
-            if (user.name === undefined) {
+            if (user.username === undefined) {
                 const res = await fetch("http://localhost:3000/users/data/" + user.id);
                 const results = await res.json();
                 if (!results.success) {
