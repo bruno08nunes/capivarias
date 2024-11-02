@@ -4,10 +4,10 @@ import NewPostForm from "../posts/NewPostForm";
 import * as Dialog from "@radix-ui/react-dialog";
 import CommentModal from "../posts/CommentModal";
 import useAuthRedirect from "../../hooks/useAuthRedirect";
-import useUser from "../../hooks/useUser";
+import useUserContext from "../../hooks/useUserContext";
 
 const Home = () => {
-    const { user } = useUser();
+    const { user } = useUserContext();
     useAuthRedirect(user);
 
     return (

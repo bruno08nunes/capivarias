@@ -69,7 +69,7 @@ const NewPost = ({ placeholder }) => {
         <>
             <div className={style.divInput}>
                 <ProfilePicture
-                    src="logo.png"
+                    src="/logo.png"
                     alt="Foto de Perfil do usuário"
                 />
                 {isRecording ? (

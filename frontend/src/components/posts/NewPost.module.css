@@ -17,20 +17,20 @@
     border-bottom: 1px solid transparent;
     outline: none;
     font-size: 1em;
-    color: var(--verde-escuro);
+    color: var(--dark-green);
     flex: 1;
     padding: 10px;
     caret-color: currentColor;
-    transition: .3s;
+    transition: 0.3s;
     overflow: hidden;
 }
 
 .divInput textarea:is(:hover, :focus) {
-    border-bottom: 1px solid var(--verde-escuro);
+    border-bottom: 1px solid var(--dark-green);
 }
 
 .divInput ::placeholder {
-    color: rgb(from var(--verde-escuro) r g b / 0.6);
+    color: var(--transparent-green);
 }
 
 .divTextarea span {

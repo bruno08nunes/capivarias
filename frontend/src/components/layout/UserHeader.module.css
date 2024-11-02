@@ -1,0 +1,94 @@
+
+
+.user {
+    border: 4px solid var(--light-green);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top: none;
+}
+
+.images {
+    position: relative;
+    font-size: 1.3em;
+}
+
+.banner {
+    width: 100%;
+    aspect-ratio: 5/2;
+    object-fit: cover;
+}
+
+.profilePicture {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    translate: 20px -50%;
+}
+
+.editButton {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 50px;
+}
+
+.userInfo {
+    margin-top: 80px;
+}
+
+.userInfo > :first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    gap: 15px;
+    color: var(--dark-green);
+}
+
+.usernames {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.username {
+    font-size: 1.7em;
+}
+
+.capyCode {
+    font-size: 1.3em;
+    color: var(--transparent-green);
+}
+
+.birthday {
+    display: flex;
+    align-items: center;
+}
+
+.userInfo > :nth-child(2) {
+    display: flex;
+    align-items: center;
+    padding: 15px 40px;
+    gap: 15px;
+    color: var(--transparent-green);
+    font-size: 1.3em;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.3em;
+    padding: 10px;
+
+    & a {
+        color: var(--transparent-green);
+        text-decoration: none;
+        padding: 5px;
+        border-bottom: 3px solid transparent;
+        transition: .4s;
+
+        &:is(.active, :hover) {
+            color: var(--dark-green);
+            border-bottom: 3px solid var(--dark-green);
+        }
+    }
+}

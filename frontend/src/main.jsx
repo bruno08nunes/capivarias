@@ -15,6 +15,8 @@ import SearchPage from "./components/routes/SearchPage.jsx";
 import SettingsPage from "./components/routes/SettingsPage.jsx";
 import ErrorPage from "./components/routes/ErrorPage.jsx";
 import UserContextProvider from "./contexts/UserContext.jsx";
+import AccountAnswers from "./components/routes/AccountAnswers.jsx";
+import AccountAmazings from "./components/routes/AccountAmazings.jsx";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
                     {
                         path: "/account/:id",
                         element: <Account />,
+                    },
+                    {
+                        path: "/account/answers/:id",
+                        element: <AccountAnswers />,
+                    },
+                    {
+                        path: "/account/amazings/:id",
+                        element: <AccountAmazings />,
                     },
                     {
                         path: "/notifications/:id",

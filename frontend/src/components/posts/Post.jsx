@@ -15,7 +15,7 @@ const Post = ({ id }) => {
     return (
         <article className={style.post} id={id}>
             <div className={style.header}>
-                <ProfilePicture src={"logo.png"} />
+                <ProfilePicture src={"/logo.png"} />
                 <div className={style.userData}>
                     <span>Capivárias</span>
                     <span>@capivarias</span>

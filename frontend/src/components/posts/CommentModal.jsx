@@ -12,7 +12,7 @@ const CommentModal = () => {
                     Responda a publicação de Usuário
                 </Dialog.Title>
                 <div className={style.postData}>
-                    <ProfilePicture src={"logo.png"} alt={"user"} />
+                    <ProfilePicture src={"/logo.png"} alt={"user"} />
                     <div className={style.userData}>
                         <span>Capivárias</span>
                         <span>@capivarias</span>

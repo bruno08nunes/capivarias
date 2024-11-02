@@ -8,13 +8,13 @@
     padding-bottom: 15px;
 
     & h1 {
-        color: var(--verde-escuro);
+        color: var(--dark-green);
     }
 }
 
 .link {
     text-align: center;
-    color: var(--verde-escuro);
+    color: var(--dark-green);
     &:hover {
         text-decoration: none;
     }

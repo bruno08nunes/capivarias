@@ -10,7 +10,7 @@ import Button from "../layout/form/Button";
 // Hooks
 import style from "./Register.module.css";
 import useFormProps from "../../hooks/useFormProps";
-import useUser from "../../hooks/useUser";
+import useUserContext from "../../hooks/useUserContext";
 
 const Register = () => {
     const usernameProps = useFormProps("username");
@@ -19,7 +19,7 @@ const Register = () => {
     const passwordProps = useFormProps("password");
     const dateProps = useFormProps("date");
 
-    const { setUser } = useUser();
+    const { setUser } = useUserContext();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -50,7 +50,7 @@ const Register = () => {
         }
         const user = {
             id: results.data.insertId,
-            ...data
+            ...data,
         };
         setUser(user);
         localStorage.setItem("user", user);
@@ -59,7 +59,7 @@ const Register = () => {
 
     const onClick = () => {
         navigate("/");
-    }
+    };
 
     return (
         <>

@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import style from "./Account.module.css";
 import UserHeader from "../layout/UserHeader";
 
-const Account = () => {
+const AccountAmazings = () => {
     const { id: userId } = useParams();
 
     return (
@@ -22,4 +22,4 @@ const Account = () => {
     );
 };
 
-export default Account;
+export default AccountAmazings;

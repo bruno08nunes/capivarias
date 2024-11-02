@@ -2,9 +2,9 @@
     max-width: 700px;
     margin: auto;
     --bg-hover-color: var(--dark-green);
-    padding-top: 25px;
 
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding-bottom: 15px;
 }

@@ -111,8 +111,14 @@ router.post("/users/login", validationLogin, (req: Request, res: Response) => {
 });
 
 router.get("/users/data/:id", (req, res) => {
-    const params = [req.params.id];
-    const query = "SELECT username, capy_code, birthday, bio, profile_picture, role, is_private, is_active, created_at FROM users WHERE id = ?;";
+    const params = [req.params.id, req.params.id];
+    const query = `
+        SELECT username, capy_code, birthday, bio, profile_picture, role, is_private, is_active, created_at,
+            (SELECT COUNT(*) FROM follows WHERE following = users.id) AS followers,
+            (SELECT COUNT(*) FROM follows WHERE follower = users.id) AS following
+        FROM users
+        WHERE users.id = ? or users.capy_code = ?;
+    `;
 
     connection.query(query, params, (err, results) => {
         if (err) {

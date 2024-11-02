@@ -1,5 +1,5 @@
 .form {
-    border: 5px solid var(--verde-claro);
+    border: 5px solid var(--light-green);
     padding: 15px;
     display: flex;
     flex-direction: column;

@@ -8,12 +8,12 @@ import Form from "../layout/form/Form";
 import Header from "../layout/Header";
 
 // Hooks
-import useUser from "../../hooks/useUser";
+import useUserContext from "../../hooks/useUserContext";
 import style from "./Login.module.css";
 import useFormProps from "../../hooks/useFormProps";
 
 const Login = () => {
-    const { setUser } = useUser();
+    const { setUser } = useUserContext();
     const emailProps = useFormProps("email");
     const passwordProps = useFormProps("password");
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ const Login = () => {
         const results = await res.json();
         if (!results.success) {
             alert(results.message);
-            console.error(results)
+            console.error(results);
             return;
         }
         const user = results.data[0];

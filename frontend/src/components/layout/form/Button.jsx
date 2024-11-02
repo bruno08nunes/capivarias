@@ -1,10 +1,13 @@
 import style from "./Button.module.css";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 
-const Button = ({ children, className, ...props }) => {
+const Button = ({ children, className, asChild, ...props }) => {
+    const Component = asChild ? Slot : "button";
+
     return (
-        <button className={style.button + " " + className} {...props}>
-            {children}
-        </button>
+        <Component className={style.button + " " + className} {...props}>
+            <Slottable>{children}</Slottable>
+        </Component>
     );
 };
 

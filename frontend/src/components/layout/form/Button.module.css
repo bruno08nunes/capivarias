@@ -1,17 +1,18 @@
 .button {
-    background-color: var(--verde-claro);
-    color: var(--marrom);
+    background-color: var(--light-green);
+    color: var(--brown);
     border: none;
     outline: none;
     padding: 10px 20px;
     font-size: 0.8em;
     border-radius: 50px;
     cursor: pointer;
-    transition: .4s;
+    transition: 0.4s;
     border: 2px solid transparent;
+    text-decoration: none;
 
     &:hover {
-        background-color: color-mix(in srgb, var(--verde-claro) 90%, black);
+        background-color: color-mix(in srgb, var(--light-green) 90%, black);
     }
 
     &:focus-visible {

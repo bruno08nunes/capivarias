@@ -5,9 +5,11 @@
 1.  [Sumário](#sumário)
 1.  [Componentes](#componentes)
     1.  [layout](#layout)
+        1. [Icon](#icon)
         1. [IconButton](#iconbutton)
         1. [Sidebar](#sidebar)
         1. [Header](#header)
+        1. [UserHeader](#userheader)
         1. [Form](#form)
             1. [Button](#button)
             1. [Form](#form-1)
@@ -23,11 +25,15 @@
         1. [CommentModal](#commentmodal)
 1.  [Hooks](#hooks)
     1.  [useAuthRedirect](#useauthredirect)
+    1.  [useUserContext](#useusercontext)
     1.  [useUser](#useuser)
+    1.  [useFormProps](#useformprops)
 1.  [Contexts](#contexts)
     1.  [UserContext](#usercontext)
 1.  [Utilities](#utilities)
     1.  [getUserLoggedIn](#getuserloggedin)
+    1.  [fetchUserData](#fetchuserdata)
+    1.  [formatFullDate](#formatfulldate)
 
 ## Componentes
 
@@ -37,9 +43,17 @@ Os componentes react podem também receber CSS próprios feitos com Módulos CSS
 
 Essa pasta contem os componententes de layout da aplicação, que podem ser replicados em diversos lugares.
 
+#### Icon
+
+Esse componente contém um ícone do Google Icons.
+
+Recebe como parâmetro:
+* iconName - Nome do ícone na biblioteca Google Icon
+* iconSize - Tamanho do ícone
+
 #### IconButton
 
-Esse componente é um link que contém um icone do Google Icon.
+Esse componente é um botão que contém um icone do Google Icon.
 
 Recebe como parâmetros:
 
@@ -61,6 +75,12 @@ Cabeçalho da página de Login e Register.
 
 Não recebe parâmetros
 
+#### UserHeader
+
+Parte que mostra as informações do usuário na página de conta.
+
+Recebe como parâmetro um ID de usuário
+
 #### form
 
 Pasta com os componentes de layout de formulário
@@ -69,7 +89,12 @@ Pasta com os componentes de layout de formulário
 
 Botão padrão com estilização própria.
 
-Pode receber como parâmetro children, classname e outras props.
+Pode receber como parâmetro:
+
+-   children,
+-   asChild - Define se será usado como botão ou outro componente. Visto no Slot da biblioteca Radix-UI
+-   classname,
+-   Outras props.
 
 ##### Form
 
@@ -104,6 +129,14 @@ Página principal, que mostra os posts.
 #### Account
 
 Página da conta do usuário. A rota recebe o id de um usuário.
+
+#### AccountAmazings
+
+Página da conta do usuário, mostrando as curtidas. A rota recebe o id de um usuário.
+
+#### AccountAnswers
+
+Página da conta do usuário, mostrando as respostas. A rota recebe o id de um usuário.
 
 #### NotificationPage
 
@@ -169,37 +202,60 @@ Modal de Comentário de posts.
 
 Recebe o id de um usuário. Caso seja passado um valor nulo, redireciona para a página de cadastro (Register.jsx)
 
-### useUser
+### useUserContext
 
 Retorna o valor do contexto UserContext. Caso nesse valor tenha apenas o id do usuário, faz uma requisição ao servidor para pegar os dados restantes.
+
+### useUser
+
+Faz uma requisição ao servidor pegando o usuário com o id passado. Não está relacionado com o UserContext.
+
+Recebe um id como parâmetro.
 
 ### useFormProps
 
 Gera props para um input
 
 Recebe:
-*   O valor que recebera o name e o id
-*   Valor inicial do input (opcional)
+
+-   O valor que recebera o name e o id
+-   Valor inicial do input (opcional)
 
 Retorna:
-*   InputProps - Objeto com as propriedades:
-    *   value - Contém o estado com o valor atual do input
-    *   onInput - Faz com que altere o valor a cada digitação
-    *   id - Id do input
-    *   name - name do input, com o mesmo valor do id
+
+-   InputProps - Objeto com as propriedades:
+    -   value - Contém o estado com o valor atual do input
+    -   onInput - Faz com que altere o valor a cada digitação
+    -   id - Id do input
+    -   name - name do input, com o mesmo valor do id
 
 ## Contexts
 
 ### UserContext
 
 Contém:
-*   user - Objeto do usuário com as propriedades:
-    *   id - ID do usuário pego pelo localStorage
-    *   name - Nome do usuário
-*   setUser
+
+-   user - Objeto do usuário com as propriedades:
+    -   id - ID do usuário pego na máquina do usuário
+    -   name - Nome do usuário
+-   setUser
 
 ## Utilities
 
 ### getUserLoggedIn
 
-Pega o id do usuário. Por enquanto, acessa o localStorage.
+Pega o id do usuário logado. Por enquanto, acessa o localStorage.
+
+### fetchUserData
+
+Faz requisição ao servidor buscando dados do usuário.
+
+Recebe um id numérico como parâmetro.
+
+### formatFullDate
+
+Recebe uma data, tanto o objeto quanto uma string, e retorna ela formatada no formato dd/mm/yyyy.
+
+Recebe como parâmetro uma data em formato de objeto Date ou string.
+
+Também possui uma função formatDate, que recebe um número que, caso tenha apenas um caractere, coloca um 0 no início.

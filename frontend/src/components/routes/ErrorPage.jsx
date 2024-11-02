@@ -8,7 +8,7 @@ const ErrorPage = () => {
         return (
             <div className={style.main}>
                 <div>
-                    <img src="404.png" />
+                    <img src="/404.png" />
                 </div>
                 <h2>404</h2>
                 <p>Não foi possível encontrar a página</p>

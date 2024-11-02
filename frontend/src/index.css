@@ -1,12 +1,13 @@
 /* Importação Fonte do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
     /* Variáveis Globais */
-    --verde-escuro: #05A63A;
-    --verde-claro: #A1F7A1;
-    --marrom: #9C726D;
-    --branco: #F3F3F3;
+    --dark-green: #05a63a;
+    --transparent-green: rgb(from var(--dark-green) r g b / 0.6);
+    --light-green: #a1f7a1;
+    --brown: #9c726d;
+    --white: #f3f3f3;
 }
 
 * {
@@ -18,5 +19,5 @@
 }
 
 body {
-    background-color: var(--branco);
+    background-color: var(--white);
 }

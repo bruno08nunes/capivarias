@@ -4,15 +4,17 @@
     align-items: center;
     text-decoration: none;
     color: inherit;
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 50px;
     border: none;
     background-color: transparent;
     padding: 5px 15px;
     font-size: 1em;
     cursor: pointer;
-    &:hover, &[class*="active"], &:focus-visible {
-        background-color: var(--bg-hover-color, var(--verde-escuro));
+    &:hover,
+    &[class*="active"],
+    &:focus-visible {
+        background-color: var(--bg-hover-color, var(--dark-green));
         color: white;
     }
     &[class*="active"]:is(:hover, :focus-visible) {
@@ -31,9 +33,5 @@
 }
 
 [class*="favorite"] [class*="material-symbols-outlined"] {
-    font-variation-settings:
-    'FILL' 1,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
-  }
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}

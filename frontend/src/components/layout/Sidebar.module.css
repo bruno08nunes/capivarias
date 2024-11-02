@@ -1,7 +1,7 @@
 .sidebar {
-    background-color: var(--verde-claro);
-    color: var(--marrom);
-    --bg-hover-color: var(--marrom);
+    background-color: var(--light-green);
+    color: var(--brown);
+    --bg-hover-color: var(--brown);
     max-width: 250px;
     width: 100%;
     padding: 10px;
@@ -17,7 +17,7 @@
 }
 
 .active {
-    background-color: var(--marrom);
+    background-color: var(--brown);
     color: white;
 }
 

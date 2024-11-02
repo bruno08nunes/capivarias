@@ -18,8 +18,8 @@
 }
 
 .main h2 {
-    color: var(--marrom);
-    background-color: rgb(from var(--verde-claro) r g b / 0.8);
+    color: var(--brown);
+    background-color: rgb(from var(--light-green) r g b / 0.8);
     font-size: 3em;
     width: 100%;
     max-width: 250px;
@@ -28,5 +28,5 @@
 .main p {
     font-size: 1.3em;
     padding-top: 10px;
-    color: var(--verde-escuro);
+    color: var(--dark-green);
 }
