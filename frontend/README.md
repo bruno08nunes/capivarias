@@ -28,6 +28,7 @@
     1.  [useUserContext](#useusercontext)
     1.  [useUser](#useuser)
     1.  [useFormProps](#useformprops)
+    1.  [usePost](#)
 1.  [Contexts](#contexts)
     1.  [UserContext](#usercontext)
 1.  [Utilities](#utilities)
@@ -229,6 +230,14 @@ Retorna:
     -   id - Id do input
     -   name - name do input, com o mesmo valor do id
 
+### usePost
+
+Faz uma requisição ao servidor, retornando um estado com os posts e com o setter deles.
+
+Recebe o:
+*   ID do Usuário Logado - Serve para verificar curtidas; e
+*   ID de Usuário Dono das Postangens - Opcional
+
 ## Contexts
 
 ### UserContext
@@ -252,6 +261,14 @@ Faz requisição ao servidor buscando dados do usuário.
 
 Recebe um id numérico como parâmetro.
 
+### fetchPost
+
+Faz uma requisição ao servidor, retornando os posts.
+
+Recebe o:
+*   ID do Usuário Logado - Serve para verificar curtidas; e
+*   ID de Usuário Dono das Postangens - Opcional
+
 ### formatFullDate
 
 Recebe uma data, tanto o objeto quanto uma string, e retorna ela formatada no formato dd/mm/yyyy.
@@ -259,3 +276,5 @@ Recebe uma data, tanto o objeto quanto uma string, e retorna ela formatada no fo
 Recebe como parâmetro uma data em formato de objeto Date ou string.
 
 Também possui uma função formatDate, que recebe um número que, caso tenha apenas um caractere, coloca um 0 no início.
+
+Também possui uma função countTime, que recebe uma data e faz uma contagem de quanto tempo passou dela até os dias atuais.

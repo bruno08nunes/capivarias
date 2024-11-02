@@ -15,7 +15,6 @@ const AccountAnswers = () => {
         <Dialog.Root>
             <main className={style.main}>
                 <UserHeader userId={userId} />
-                <Post />
             </main>
             <CommentModal />
         </Dialog.Root>

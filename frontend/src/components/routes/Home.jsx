@@ -5,16 +5,21 @@ import * as Dialog from "@radix-ui/react-dialog";
 import CommentModal from "../posts/CommentModal";
 import useAuthRedirect from "../../hooks/useAuthRedirect";
 import useUserContext from "../../hooks/useUserContext";
+import usePost from "../../hooks/usePost";
 
 const Home = () => {
     const { user } = useUserContext();
     useAuthRedirect(user);
 
+    const { posts } = usePost(user.id);
+
     return (
         <Dialog.Root>
             <main className={style.main}>
-                <NewPostForm />
-                <Post id={5} />
+                <NewPostForm user={user.id} />
+                {posts.map((post) => (
+                    <Post post={post} key={post.id} />
+                ))}
             </main>
             <CommentModal />
         </Dialog.Root>

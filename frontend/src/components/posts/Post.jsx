@@ -4,24 +4,27 @@ import ProfilePicture from "./ProfilePicture";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
+import { countTime } from "../../utilities/formatFullDate";
 
-const Post = ({ id }) => {
-    const [isFavorited, setIsFavorited] = useState(false);
+const Post = ({ post }) => {
+    const [isFavorited, setIsFavorited] = useState(post.is_amazing);
+    const time = countTime(post.created_at);
+    const isEdited = post.created_at !== post.updated_at;
 
     const handleFavorite = (e) => {
         setIsFavorited(state => !state);
     }
 
     return (
-        <article className={style.post} id={id}>
+        <article className={style.post} id={post.id}>
             <div className={style.header}>
-                <ProfilePicture src={"/logo.png"} />
+                <ProfilePicture src={post.profile_picture} />
                 <div className={style.userData}>
-                    <span>Capivárias</span>
-                    <span>@capivarias</span>
+                    <span>{post.username}</span>
+                    <span>@{post.capy_code}</span>
                 </div>
                 <div className={style.postData}>
-                    <time dateTime="">10h</time>
+                    <time dateTime="">{time}</time>
                     <DropdownMenu.Root>
                         <IconButton
                             iconName="more_horiz"
@@ -42,12 +45,7 @@ const Post = ({ id }) => {
                     </DropdownMenu.Root>
                 </div>
             </div>
-            <p className={style.message}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis voluptatibus ipsum hic neque, quibusdam odio officia
-                quia omnis cupiditate alias libero velit. Reprehenderit, quae
-                voluptatibus officiis tenetur possimus eveniet non!
-            </p>
+            <p className={style.message}>{post.content}</p>
             <div className={style.buttons}>
                 <IconButton
                     iconName="comment"

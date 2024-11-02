@@ -6,7 +6,9 @@ const router = express.Router();
 
 const validationPost = [
     body("user_id").isNumeric().withMessage("Usuário inválido"),
-    body("content").isLength({max: 220}).withMessage("O quantidade máxima de caracteres é 220"),
+    body("content")
+        .isLength({ max: 220 })
+        .withMessage("O quantidade máxima de caracteres é 220"),
     body("is_private").isBoolean().withMessage("Propriedade private inválida"),
 ];
 
@@ -16,49 +18,62 @@ router.post("/posts/post", validationPost, (req: Request, res: Response) => {
         return res.status(400).json({
             message: "Informações Inválidas",
             success: false,
-            data: errors.array()
+            data: errors.array(),
         });
     }
 
-    const params = [
-        req.body.user_id,
-        req.body.content,
-        req.body.is_private
-    ];
+    const params = [req.body.user_id, req.body.content, req.body.is_private];
 
-    const query = "INSERT INTO posts(user_id, content, is_private) VALUES(?, ?, ?);";
+    const query =
+        "INSERT INTO posts(user_id, content, is_private) VALUES(?, ?, ?);";
 
     connection.query(query, params, (err, results) => {
         if (err) {
             return res.status(400).json({
                 success: false,
                 message: "Erro ao postar",
-                data: err
+                data: err,
             });
         }
         return res.status(201).json({
             success: true,
             message: "Post enviado",
-            data: results
+            data: results,
         });
     });
 });
 
 router.get("/posts/all", (req, res) => {
-    const query = "SELECT * FROM posts;";
+    const params = [
+        req.query.user
+    ];
 
-    connection.query(query, (err, results) => {
+    const query = `
+        SELECT posts.*, users.username, users.capy_code, users.profile_picture,
+        CASE
+            WHEN MAX(amazings.user_id) = ? THEN true
+            ELSE false
+            END AS is_amazing
+        FROM posts
+        INNER JOIN users
+        ON users.id = posts.user_id
+        LEFT JOIN amazings
+        ON posts.id = amazings.post_id
+        GROUP BY posts.id;
+    `;
+
+    connection.query(query, params, (err, results) => {
         if (err) {
             return res.status(400).json({
                 success: false,
                 message: "Erro ao pegar dados do post",
-                data: err
+                data: err,
             });
         }
         res.status(200).json({
             success: true,
             message: "Dados pegos",
-            data: results
+            data: results,
         });
     });
 });
@@ -72,33 +87,46 @@ router.get("/posts/data/:id", (req, res) => {
             return res.status(400).json({
                 success: false,
                 message: "Erro ao pegar dados do post",
-                data: err
+                data: err,
             });
         }
         res.status(200).json({
             success: true,
             message: "Dados pegos",
-            data: results
+            data: results,
         });
     });
 });
 
 router.get("/users/posts/:user", (req, res) => {
-    const params = [req.params.user];
-    const query = "SELECT * FROM posts WHERE user_id = ?;";
+    const params = [req.query.user, req.params.user, req.params.user];
+    const query = `
+        SELECT posts.*, users.username, users.capy_code, users.profile_picture, count(amazings.post_id),
+        CASE
+            WHEN MAX(amazings.user_id) = ? THEN true
+            ELSE false
+            END AS is_amazing
+        FROM posts
+        INNER JOIN users
+        ON users.id = posts.user_id
+        LEFT JOIN amazings
+        ON posts.id = amazings.post_id
+        WHERE posts.user_id = ? OR users.capy_code = ?
+        GROUP BY posts.id;
+    `;
 
     connection.query(query, params, (err, results) => {
         if (err) {
             return res.status(400).json({
                 success: false,
                 message: "Erro ao pegar dados do post",
-                data: err
+                data: err,
             });
         }
         res.status(200).json({
             success: true,
             message: "Dados pegos",
-            data: results
+            data: results,
         });
     });
 });
