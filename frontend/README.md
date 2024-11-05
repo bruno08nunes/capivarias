@@ -23,6 +23,7 @@
         1. [ProfilePicture](#profilepicture)
         1. [Recording](#recording)
         1. [CommentModal](#commentmodal)
+        1. [AmazingButton](#amazingbutton)
 1.  [Hooks](#hooks)
     1.  [useAuthRedirect](#useauthredirect)
     1.  [useUserContext](#useusercontext)
@@ -195,7 +196,15 @@ Recebe como parâmetro o tempo de gravação.
 
 #### CommentModal
 
-Modal de Comentário de posts.
+Modal de Comentário de posts que funciona usando a biblioteca Radix-UI.
+
+### AmazingButton
+
+Botão de curtir um post/comentário.
+
+Recebe como parâmetro:
+*   isFavorited - Se está favoritado no momento
+*   handleFavorite - Função ativada ao clicar no botão
 
 ## Hooks
 
@@ -268,6 +277,16 @@ Faz uma requisição ao servidor, retornando os posts.
 Recebe o:
 *   ID do Usuário Logado - Serve para verificar curtidas; e
 *   ID de Usuário Dono das Postangens - Opcional
+
+### fetchAmazing
+
+Faz uma requisição ao servidor enviando um amazing ou deletando um amazing.
+
+Recebe:
+*   data - Objeto com as informações necessárias. Contém:
+    *   user - ID do usuário
+    *   post - ID do post
+*   method - Método HTTP usado. Deve ser POST ou DELETE.
 
 ### formatFullDate
 

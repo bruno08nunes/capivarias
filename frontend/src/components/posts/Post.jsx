@@ -1,17 +1,36 @@
-import style from "./Post.module.css";
+// Components
 import IconButton from "../layout/IconButton";
 import ProfilePicture from "./ProfilePicture";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import AmazingButton from "./AmazingButton";
+
+// Hooks and Utilities
+import style from "./Post.module.css";
 import { useState } from "react";
 import { countTime } from "../../utilities/formatFullDate";
+import getUserLoggedIn from "../../utilities/getUserLoggedIn";
+import fetchAmazing from "../../utilities/fetchAmazing";
 
 const Post = ({ post }) => {
     const [isFavorited, setIsFavorited] = useState(post.is_amazing);
     const time = countTime(post.created_at);
     const isEdited = post.created_at !== post.updated_at;
+    const user = getUserLoggedIn();
 
-    const handleFavorite = (e) => {
+    const handleFavorite = async (e) => {
+        let method = "POST";
+        const data = {
+            post: post.id,
+            user: user
+        };
+        if (isFavorited) {
+            method = "DELETE"
+        }
+        const results = await fetchAmazing(data, method);
+        if (!results.success) {
+            return;
+        }
         setIsFavorited(state => !state);
     }
 
@@ -56,12 +75,9 @@ const Post = ({ post }) => {
                 >
                     <Dialog.Trigger></Dialog.Trigger>
                 </IconButton>
-                <IconButton
-                    iconName={"favorite"}
-                    iconSize={40}
-                    className={"circle" + " " + (isFavorited && "favorited")}
-                    aria-label="Curtir"
-                    onClick={handleFavorite}
+                <AmazingButton
+                    isFavorited={isFavorited}
+                    handleFavorite={handleFavorite}
                 />
             </div>
         </article>

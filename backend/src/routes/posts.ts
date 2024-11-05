@@ -131,4 +131,92 @@ router.get("/users/posts/:user", (req, res) => {
     });
 });
 
+router.post("/post/amazing", (req, res) => {
+    const params = [req.body.post, req.body.user];
+    const query = `
+        INSERT INTO amazings(post_id, user_id) VALUES (?, ?);
+    `;
+
+    connection.query(query, params, (err, results) => {
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                message: "Erro ao adicionar amazing no post",
+                data: err
+            });
+        }
+        res.status(201).json({
+            success: true,
+            message: "Amazing concluído",
+            data: results
+        });
+    });
+});
+
+router.delete("/post/amazing", (req, res) => {
+    const params = [req.body.post, req.body.user];
+    const query = `
+        DELETE FROM amazings WHERE post_id = ? AND user_id = ?;
+    `;
+
+    connection.query(query, params, (err, results) => {
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                message: "Erro ao remover amazing no post",
+                data: err
+            });
+        }
+        res.status(201).json({
+            success: true,
+            message: "Amazing deletado",
+            data: results
+        });
+    });
+});
+
+router.post("/post/comments/amazing", (req, res) => {
+    const params = [req.body.post, req.body.user];
+    const query = `
+        INSERT INTO amazings(post_id, user_id) VALUES (?, ?);
+    `;
+
+    connection.query(query, params, (err, results) => {
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                message: "Erro ao adicionar amazing no post",
+                data: err
+            });
+        }
+        res.status(201).json({
+            success: true,
+            message: "Amazing concluído",
+            data: results
+        });
+    });
+});
+
+router.delete("/post/amazing", (req, res) => {
+    const params = [req.body.post, req.body.user];
+    const query = `
+        DELETE FROM amazings WHERE post_id = ? AND user_id = ?;
+    `;
+
+    connection.query(query, params, (err, results) => {
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                message: "Erro ao remover amazing no post",
+                data: err
+            });
+        }
+        res.status(201).json({
+            success: true,
+            message: "Amazing deletado",
+            data: results
+        });
+    });
+});
+
 export default router;

@@ -27,7 +27,7 @@ export const countTime = (date) => {
             if (interval.label === "mês") {
                 return `Há ${count} meses`;
             }
-            return `${count} ${interval.label}${plural} atrás`;
+            return `${count} ${interval.label}${plural}`;
         }
     }
 
