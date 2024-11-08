@@ -12,7 +12,7 @@ import { countTime } from "../../utilities/formatFullDate";
 import getUserLoggedIn from "../../utilities/getUserLoggedIn";
 import fetchAmazing from "../../utilities/fetchAmazing";
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentPost }) => {
     const [isFavorited, setIsFavorited] = useState(post.is_amazing);
     const time = countTime(post.created_at);
     const isEdited = post.created_at !== post.updated_at;
@@ -73,7 +73,7 @@ const Post = ({ post }) => {
                     aria-label="Comentar"
                     asChild
                 >
-                    <Dialog.Trigger></Dialog.Trigger>
+                    <Dialog.Trigger onClick={() => setCurrentPost(post)}></Dialog.Trigger>
                 </IconButton>
                 <AmazingButton
                     isFavorited={isFavorited}

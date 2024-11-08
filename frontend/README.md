@@ -172,7 +172,9 @@ Componentes ligados aos posts
 
 Post principal
 
-Recebe como parâmetro um id
+Recebe como parâmetro:
+*   post - Um objeto contendo as informações da postagem
+*   setCurrentPost - Uma função que altera o post que aparecerá no modal de comentários (CommentModal).
 
 #### NewPostForm
 
@@ -197,6 +199,9 @@ Recebe como parâmetro o tempo de gravação.
 #### CommentModal
 
 Modal de Comentário de posts que funciona usando a biblioteca Radix-UI.
+
+Recebe os parâmetros:
+*   post - Objeto com as informações da postagem necessários.
 
 ### AmazingButton
 
