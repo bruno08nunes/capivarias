@@ -1,10 +1,11 @@
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
+import path from "path";
 
+// Routes
 import users from "./routes/users";
 import posts from "./routes/posts";
-import postsMedias from "./routes/medias";
 
 const app = express();
 
@@ -15,6 +16,8 @@ const port = Number(process.env.PORT);
 
 app.listen(port, () => console.log(`Rodando na porta ${port}`));
 
-app.use("/", users);
-app.use("/", posts);
-app.use("/", postsMedias);
+app.use("/users", users);
+app.use("/posts", posts);
+
+app.use("/uploads/posts", express.static(path.join(__dirname, "..", "public", "posts")));
+app.use("/uploads/users", express.static(path.join(__dirname, "..", "public", "users")));
