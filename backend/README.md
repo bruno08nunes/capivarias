@@ -23,7 +23,24 @@
         1.  [validations](#validations)
     1.  [dist](#dist)
 1.  [Banco de Dados](#banco-de-dados)
+    1.  [Entidades](#entidades)
 1.  [Coleção Postman (rotas do servidor)](#coleção-postman-rotas-servidor)
+    1.  [Users](#users)
+        1.  [Cadastro (Register)](#cadastro-register)
+        1.  [Login](#login)
+        1.  [Informações](#informações)
+        1.  [Listar Posts](#listar-posts)
+    1.  [Posts](#posts)
+        1.  [Criação](#criação)
+        1.  [Informações](#informações-1)
+        1.  [Listar](#listar)
+        1.  [Enviar Mídia](#enviar-mídia)
+        1.  [Resgatar Mídia](#resgatar-mídias)
+    1.  [Amazings](#amazings)
+        1.  [Criação](#criação-1)
+        1.  [Remoção](#remoção)
+        1.  [Criação em Comentário](#criação-em-comentário)
+        1.  [Remoção em Comentário](#remoção-em-comentário)
 
 ## Formatação e Convenções
 
@@ -115,4 +132,202 @@ Pasta com os arquivos compilados de TS para JS, para poderem ser interpretados p
 
 ## Banco de Dados
 
+Essa parte conterá a descrição do banco de dados e suas entidades.
+
+### Entidades
+
+users - Usuários da aplicação. Contém os atributos:
+-   id - Valor inteiro adicionado automaticamente para identificação única no banco;
+-   username - Nome de usuário até 50 caracteres;
+-   capy_code - Valor público de identificação única de usuário. Até 30 caracteres. É um index do banco de dados;
+-   email - Email do usuário. É um index do banco de dados;
+-   password - Senha do usuário;
+-   birthday - Data de nascimento do usuário. Em formato date;
+-   bio - Biografia do usuário até 220 caracteres. Opcional;
+-   profile_picture - Nome da foto de perfil do usuário no servidor. Opcional;
+-   role - Cargo do usuário. Aceita os valores "A" para administarado e "U" para usuário comum. "U" é o valor padrão;
+-   is_private - Indica se a conta do usuário é privada ou não. False é o valor padrão;
+-   is_active - Indica se a conta do usuário está ativa ou não. False é o valor padrão;
+-   created_at - Mostra a data de criação da conta do usuário. O tempo atual é o valor padrão; e
+-   updated_at - Mostra a data de última alteração da conta do usuário. O tempo atual é o valor padrão.
+
+posts - Postagem de usuários. Contém os atributos:
+-   id - Valor inteiro adicionado automaticamente para identificação única no banco;
+-   content - Conteúdo de texto da postagem. Até 220 caracteres. Opcional;
+-   user_id - Id do usuário que realizou a postagem. É um index;
+-   is_private - Indica se a postagem está privada. False é o valor padrão;
+-   created_at - Mostra a data de criação da postagem do usuário. O tempo atual é o valor padrão; e
+-   updated_at - Mostra a data de última alteração da postagem do usuário. O tempo atual é o valor padrão.
+
+posts_medias - Imagens, vídeos, PDFs e áudios das postagens. Contém os atributos:
+-   id - Valor inteiro adicionado automaticamente para identificação única no banco;
+-   post_id - Id do post relacionado com ele. É um index; e
+-   url - Nome do arquivo no servidor. Gerado automaticamente pelo servidor (multer).
+
+amazings - Likes dos posts. Contém os atributos:
+-   user_id - Chave primária que faz referência ao usuário;
+-   post_id - Chave primária que faz referência ao post; e
+-   created_at - Quando o post foi curtido. Tem o valor padrão do tempo atual.
+
+comments - Comentários dos posts. Contém os atributos:
+-   id - Valor inteiro adicionado automaticamente para identificação única no banco;
+-   user_id - Usuário que fez o comentário;
+-   post_id - Post no qual o comentário foi feito. É um index;
+-   content - Conteúdo do comentário;
+-   created_at - Mostra a data de criação do comentário. O tempo atual é o valor padrão; e
+-   updated_at - Mostra a data de última alteração do comentário. O tempo atual é o valor padrão.
+
+amazings_comments - Likes dos comentários. Contém os atributos:
+-   user_id - Chave primária que faz referência ao usuário;
+-   comment_id - Chave primária que faz referência ao comentário; e
+-   created_at - Quando o post foi curtido. Tem o valor padrão do tempo atual.
+
+follows - Tabela de relação entre usuários. Contém os atributos:
+-   follower - ID do usuário que está seguindo. É uma chave primária;
+-   following - ID do usuário que está sendo seguido. É uma chave primária; e
+-   created_at - Data de seguimento entre os usuários.
+
 ## Coleção Postman (Rotas Servidor)
+
+Essa parte conterá a descrição das rotas do servidor e seus controllers.
+
+### users
+
+Essas rotas estão relacionadas com os usuários da aplicação.
+
+#### Cadastro (register)
+
+Informações:
+-   Caminho: /users/register
+-   Método: POST
+-   Validação - validationRegister. Acontece por meio da biblioteca express-validator. Deve ter:
+    -   username - De 3 a 50 caracteres;
+    -   capyCode - De 5 a 30 caracteres;
+    -   email - Ser um email válido;
+    -   password - De 8 a 25 caracteres; e
+    -   birthday - Ser uma data no formato "YYYY-MM-DD" e ter acontecido a 2 anos ou mais.
+-   body:
+    -   username - Nome do usuário. Ex: "Bruno";
+    -   capyCode - Código de identificação único e público. Ex: "bruno123";
+    -   email - Email. Ex: "bruno@email.com";
+    -   password - Senha. Ex: "admin123"; e
+    -   birthday - Data de aniversário. Ex: "1989/12/25".
+
+#### Login
+
+Informações:
+-   Caminho: /users/login
+-   Método: POST
+-   Validação - validationLogin. Acontece por meio da biblioteca express-validator. Deve ter:
+    -   email - Ser um email válido; e
+    -   password - De 8 a 25 caracteres.
+-   body:
+    -   email - Email. Ex: "bruno@email.com"; e
+    -   password - Senha: "admin123".
+
+#### Informações
+
+Informações:
+-   Caminho: /users/data/:id
+-   Método: GET
+-   Parâmetro: ID de usuário no banco de dados ou o capy_code
+-   Retorno: Informações do usuário
+
+#### Listar Posts
+
+Informações:
+-   Caminho: /users/posts/:user
+-   Método: GET
+-   Parâmetro: ID de usuário no banco de dados ou o capy_code
+-   Retorno: Uma lista de posts
+
+### posts
+
+Essas rotas estão relacionadas com os posts da aplicação.
+
+#### Criação
+
+Informações:
+-   Caminho: /posts/post
+-   Método: POST
+-   Validação - validationPost. Acontece por meio da biblioteca express-validator. Deve ter:
+    -   user_id - Numérico;
+    -   content - Até 220 caracteres; e
+    -   is_private - Booleano.
+-   body:
+    -   user_id - ID do usuário que serve como chave estrangeira. Ex: 1;
+    -   content - Conteúdo textual do post. Ex: "Texto de exemplo"; e
+    -   is_private - Indica se o post é privado ou não. Ex: false.
+
+#### Informações
+
+Informações:
+-   Caminho: /posts/data/:id
+-   Método: GET
+-   Parâmetro: ID de post no banco de dados
+-   Retorno: Informações do post
+
+#### Listar
+
+Informações:
+-   Caminho: /posts/all/
+-   Método: GET
+-   Retorno: Uma lista de posts
+
+#### Enviar Mídia
+
+Informações:
+-   Caminho: /posts/media/post
+-   Método: POST
+-   Middleware: uploadPost - Para o armazenamento de arquivos no servidor
+-   body:
+    -   post - ID de um post no banco de dados. Ex: 1
+    -   files - Array contendo arquivos (imagens, vídeos, áudios e PDFs)
+
+#### Resgatar Mídias
+
+Informações:
+-   Caminho: /posts/media/get/:post
+-   Método: GET
+-   Parâmetro: ID do post no banco de dados
+-   Retorno: Lista de URLs das mídias do arquivo
+
+### amazings
+
+Essas rotas estão relacionadas com os amazings da aplicação.
+
+#### Criação
+
+Informações:
+-   Caminho: /post/amazing
+-   Método: POST
+-   body:
+    -   post_id - ID do post que serve como chave estrangeira. Ex: 1; e
+    -   user_id - ID do usuário que serve como chave estrangeira. Ex: 1.
+
+#### Remoção
+
+Informações:
+-   Caminho: /post/amazing
+-   Método: DELETE
+-   body:
+    -   post_id - ID do post que serve como chave estrangeira. Ex: 1; e
+    -   user_id - ID do usuário que serve como chave estrangeira. Ex: 1.
+
+#### Criação em Comentário
+
+Informações:
+-   Caminho: /post/comments/amazing
+-   Método: POST
+-   body:
+    -   post_id - ID do post que serve como chave estrangeira. Ex: 1; e
+    -   user_id - ID do usuário que serve como chave estrangeira. Ex: 1.
+
+#### Remoção em Comentário
+
+Informações:
+-   Caminho: /post/comments/amazing
+-   Método: DELETE
+-   body:
+    -   post_id - ID do post que serve como chave estrangeira. Ex: 1; e
+    -   user_id - ID do usuário que serve como chave estrangeira. Ex: 1.
