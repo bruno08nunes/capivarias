@@ -2,6 +2,22 @@
 
 Está é a documentação da rede social Capivárias. Aqui terá informações sobre o funcionamento do site.
 
+## Sumário
+
+1.      [Sumário](#sumário)
+1.      [Descrição](#descrição)
+1.      [Lista de Tarefas](#lista-de-tarefas)
+1.      [Requisitos](#requisitos)
+        1.      [Requisitos Funcionais](#requisitos-funcionais)
+        1.      [Requisitos Funcionais](#requisitos-não-funcionais)
+1.      [Objetivos](#objetivos)
+1.      [Linguagens, Bibliotecas e Frameworks](#linguagens-bibliotecas-e-frameworks-usados)
+1.      [Design](#design)
+        1.      [Paleta de Cores](#paleta-de-cores)
+        1       [Protótipo do Figma](#protótipo-do-figma)
+        1.      [Fontes](#fontes)
+1.      [Imagens](#imagens)
+
 ## Descrição
 
 Esse site é uma rede social que tem como público alvo as mais lindas criaturas da fauna brasileira: Capivaras. Elas serão o foco da aplicação, ou seja, todas as postagens e fotos serão delas.
@@ -17,22 +33,21 @@ Esse site é uma rede social que tem como público alvo as mais lindas criaturas
         -   [ ] -   Imagens
         -   [ ] -   Backend
                 -   [x] -   Formatação e Convenções
-                -   [ ] -   Explicação do código
-                -   [ ] -   Banco de Dados
+                -   [x] -   Explicação do código
+                -   [x] -   Banco de Dados
                 -   [ ] -   Coleção Postman (Rotas Servidor)
         -   [ ] -   Frontend
                 -   [ ] -   Formatação e Convenções
-                -   [ ] -   Design
                 -   [ ] -   Explicação do código
 -   [ ] -   Design
-        -   [ ] -   Escolha de paleta de cores
-        -   [ ] -   Escolha de fontes
-        -   [ ] -   Desing UI/UX
+        -   [x] -   Escolha de paleta de cores
+        -   [x] -   Escolha de fontes
+        -   [x] -   Desing UI/UX
 -   [ ] -   Implementação
         -   [x] -   Criação base para o backend (instalar dependências, configurar tsconfig, etc)
-        -   [ ] -   Criação do modelo do banco de dados
-        -   [ ] -   Criação do banco de dados
-        -   [ ] -   Conectar db a API
+        -   [x] -   Criação do modelo do banco de dados
+        -   [x] -   Criação do banco de dados
+        -   [x] -   Conectar db a API
         -   [ ] -   Criação de rotas
         -   [ ] -   Criar componentes necessários
 
@@ -97,26 +112,11 @@ O objetivo é criar uma rede social para desenvolver as habilidades em React, No
 ## Explicação do Código
 
 Para ver a explicação do Frontend e do Backend, veja o arquivo README.md em cada um deles.
-
-### README.md
-
-Documentação.
-
-### LICENSE
-
-Licença do MIT
-
-### .prettierrc
-
-Arquivo com configurações de estilo na IDE, para o código manter o mesmo padrão de espaçamento.
-
-### .gitignore
-
-Arquivo que faz com que arquivos não necessários não sejam enviados ao Github.
-
-### casos-de-uso.png
-
-Caso de uso.
+-       README.md - Documentação.
+-       LICENSE - Licença do MIT
+-       .prettierrc - Arquivo com configurações de estilo na IDE, para o código manter o mesmo padrão de espaçamento.
+-       .gitignore - Arquivo que faz com que arquivos não necessários não sejam enviados ao Github.
+-       casos-de-uso.png - Caso de uso.
 
 ## Design
 

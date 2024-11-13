@@ -3,6 +3,7 @@
 ## Sumário
 
 1.  [Sumário](#sumário)
+1.  [Formatação e Convenções](#formatação-e-convenções)
 1.  [Componentes](#componentes)
     1.  [layout](#layout)
         1. [Icon](#icon)
@@ -36,6 +37,17 @@
     1.  [getUserLoggedIn](#getuserloggedin)
     1.  [fetchUserData](#fetchuserdata)
     1.  [formatFullDate](#formatfulldate)
+
+## Formatação e Convenções
+
+O código do frontend deve seguir as convenções abaixo:
+-   Separação de componentes, utilities, contexts e hooks em pastas que façam sentido;
+-   Uso de PascalCase para a nomeação dos componentes e camelCase para utilities e hooks;
+-   Uso de componentes funcionais;
+-   Identação seguindo 2 espaços;
+-   Nome de variáveis, estados, componentes e hooks coerentes e em inglês;
+-   Nome de hooks iniciando com o prefixo use; e
+-   Nome de funções ativadas em eventos iniciando com handle.
 
 ## Componentes
 
