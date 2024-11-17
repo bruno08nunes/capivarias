@@ -6,6 +6,8 @@ import path from "path";
 // Routes
 import users from "./routes/users";
 import posts from "./routes/posts";
+import comments from "./routes/comments";
+import amazings from "./routes/amazings";
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.listen(port, () => console.log(`Rodando na porta ${port}`));
 
 app.use("/users", users);
 app.use("/posts", posts);
+app.use("/comments", comments);
+app.use("/", amazings);
 
 app.use("/uploads/posts", express.static(path.join(__dirname, "..", "public", "posts")));
 app.use("/uploads/users", express.static(path.join(__dirname, "..", "public", "users")));

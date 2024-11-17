@@ -10,3 +10,5 @@ router.delete("/post/amazing", desAmazingPost);
 router.post("/post/comments/amazing", amazingComment);
 
 router.delete("/post/comments/amazing", desAmazingComment);
+
+export default router;

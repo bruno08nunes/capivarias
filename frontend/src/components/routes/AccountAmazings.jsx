@@ -16,7 +16,7 @@ const AccountAmazings = () => {
             <main className={style.main}>
                 <UserHeader userId={userId} />
             </main>
-            <CommentModal />
+            <CommentModal post={{}} />
         </Dialog.Root>
     );
 };

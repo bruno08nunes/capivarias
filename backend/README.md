@@ -41,6 +41,10 @@
         1.  [Remoção](#remoção)
         1.  [Criação em Comentário](#criação-em-comentário)
         1.  [Remoção em Comentário](#remoção-em-comentário)
+    1.  [Comentários](#comments)
+        1.  [Criação de Comentários](#criação-de-comentário)
+        1.  [Leitura de Comentários](#leitura-de-comentários)
+        1.  [Leitura de Comentário](#leitura-de-comentário)
 
 ## Formatação e Convenções
 
@@ -331,3 +335,33 @@ Informações:
 -   body:
     -   post_id - ID do post que serve como chave estrangeira. Ex: 1; e
     -   user_id - ID do usuário que serve como chave estrangeira. Ex: 1.
+
+### Comments
+
+#### Criação de Comentário
+
+Informações:
+-   Caminho: /comments/post
+-   Método: POST
+-   body:
+    -   post_id - ID do post que serve como chave estrangeira. Ex: 1;
+    -   user_id - ID do usuário que serve como chave estrangeira. Ex: 1; e
+    -   content - Conteúdo do comentário
+
+#### Leitura de Comentários
+
+Informações:
+-   Caminho: /comments/all/:post
+-   Método: GET
+-   params:
+    -   post - ID do post que serve como chave estrangeira. Ex: 1.
+-   query:
+    -   user - ID do usuário que serve como chave estrangeira. Ex: 1.
+
+#### Leitura de Comentário
+
+Informações:
+-   Caminho: /comments/data/:id
+-   Método: GET
+-   params:
+    -   id - ID do comentário. Ex: 1.

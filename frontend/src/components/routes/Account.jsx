@@ -9,11 +9,13 @@ import style from "./Account.module.css";
 import UserHeader from "../layout/UserHeader";
 import useUserContext from "../../hooks/useUserContext";
 import usePost from "../../hooks/usePost";
+import { useState } from "react";
 
 const Account = () => {
     const { id: userId } = useParams();
     const { user: userLogged } = useUserContext();
     const { posts } = usePost(userLogged.id, userId);
+    const [currentPost, setCurrentPost] = useState({});
 
     return (
         <Dialog.Root>
@@ -21,11 +23,11 @@ const Account = () => {
                 <UserHeader userId={userId} />
                 {
                     posts.map(post => (
-                        <Post post={post} key={post.id} />
+                        <Post post={post} setCurrentPost={setCurrentPost} key={post.id} />
                     ))
                 }
             </main>
-            <CommentModal />
+            <CommentModal post={currentPost} />
         </Dialog.Root>
     );
 };
