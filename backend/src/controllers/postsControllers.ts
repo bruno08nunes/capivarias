@@ -34,22 +34,18 @@ export const createPost = (req: Request, res: Response) => {
 };
 
 export const readPosts = (req: Request, res: Response) => {
-    const params = [
-        req.query.user
-    ];
+    const params = [req.query.user];
 
     const query = `
         SELECT posts.*, users.username, users.capy_code, users.profile_picture,
-        CASE
-            WHEN MAX(amazings.user_id) = ? THEN true
-            ELSE false
-            END AS is_amazing
+        EXISTS (
+           SELECT 1
+           FROM amazings
+           WHERE amazings.post_id = posts.id AND amazings.user_id = ?
+        ) AS is_amazing
         FROM posts
         INNER JOIN users
-        ON users.id = posts.user_id
-        LEFT JOIN amazings
-        ON posts.id = amazings.post_id
-        GROUP BY posts.id;
+        ON users.id = posts.user_id;
     `;
 
     connection.query(query, params, (err, results) => {
@@ -69,8 +65,22 @@ export const readPosts = (req: Request, res: Response) => {
 };
 
 export const readPost = (req: Request, res: Response) => {
-    const params = [req.params.id];
-    const query = "SELECT * FROM posts WHERE id = ?;";
+    const params = [req.query.user, req.params.id, req.query.user];
+    const query = `
+        SELECT posts.*, 
+	        users.username, 
+            users.capy_code, 
+            users.profile_picture,
+            EXISTS (
+		        SELECT 1 
+		        FROM amazings 
+		        WHERE amazings.post_id = posts.id AND amazings.user_id = ?
+	        ) AS is_amazing
+        FROM posts
+        INNER JOIN users
+        ON users.id = posts.user_id
+        WHERE posts.id = ?;
+    `;
 
     connection.query(query, params, (err, results) => {
         if (err) {
@@ -95,7 +105,7 @@ export const createMedias = (req: Request, res: Response) => {
         return res.status(400).json({
             success: false,
             message: "Arquivos inválidos enviados",
-            data: {}
+            data: {},
         });
     }
 
@@ -103,14 +113,11 @@ export const createMedias = (req: Request, res: Response) => {
         return res.status(400).json({
             success: false,
             message: "Arquivos inválidos enviados",
-            data: {}
+            data: {},
         });
     }
 
-    const params = req.files.map((file) => [
-        req.body.post,
-        file.filename
-    ]);
+    const params = req.files.map((file) => [req.body.post, file.filename]);
 
     const query = "INSERT INTO posts_medias(post_id, url) VALUES ?;";
 
@@ -119,21 +126,19 @@ export const createMedias = (req: Request, res: Response) => {
             return res.status(500).json({
                 success: false,
                 message: "Erro ao enviar arquivo",
-                data: err
+                data: err,
             });
         }
         res.status(201).json({
             success: true,
             message: "Arquivos enviados",
-            data: results
+            data: results,
         });
     });
 };
 
 export const readMedias = (req: Request, res: Response) => {
-    const params = [
-        req.params.post
-    ];
+    const params = [req.params.post];
 
     const query = "SELECT url FROM posts_medias WHERE post_id = ?;";
 
@@ -142,13 +147,13 @@ export const readMedias = (req: Request, res: Response) => {
             return res.status(500).json({
                 success: false,
                 message: "Erro ao carregar arquivos",
-                data: err
+                data: err,
             });
         }
         res.status(200).json({
             success: true,
             message: "Arquivos carregados",
-            data: results
+            data: results,
         });
     });
-}
+};

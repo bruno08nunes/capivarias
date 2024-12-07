@@ -46,7 +46,7 @@ export const desAmazingPost = (req: Request, res: Response) => {
 };
 
 export const amazingComment = (req: Request, res: Response) => {
-    const params = [req.body.comment, req.body.user];
+    const params = [req.body.post, req.body.user];
     const query = `
         INSERT INTO amazings_comments(comment_id, user_id) VALUES (?, ?);
     `;

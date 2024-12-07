@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import fetchPost from "../utilities/fetchPost";
 
-const usePost = (selfId, userId) => {
-    const [posts, setPosts] = useState([]);
+const usePost = (id, userId) => {
+    const [post, setPost] = useState({});
     useEffect(() => {
         const getPost = async () => {
-            const results = await fetchPost(selfId, userId);
-            if (!results.success) {
-                alert("Erro ao pegar posts");
-                return;
+            if (id) {
+                const results = await fetchPost(id, userId);
+                if (!results.success) {
+                    alert("Erro ao pegar posts");
+                    return;
+                }
+                setPost(results.data[0]);
             }
-            setPosts(results.data);
         };
         getPost();
     }, []);
-    return { posts, setPosts };
+    return { post, setPost };
 };
 
 export default usePost;

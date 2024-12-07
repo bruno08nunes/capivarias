@@ -41,17 +41,15 @@ export const readComments = (req: Request, res: Response) => {
 
     const query = `
         SELECT comments.*, users.username, users.capy_code, users.profile_picture,
-        CASE
-            WHEN MAX(amazings_comments.user_id) = ? THEN true
-            ELSE false
-            END AS is_amazing
+        EXISTS (
+		        SELECT 1 
+		        FROM amazings_comments 
+		        WHERE amazings_comments.comment_id = comments.id AND amazings_comments.user_id = ?
+	    ) AS is_amazing
         FROM comments
         INNER JOIN users
         ON users.id = comments.user_id
-        LEFT JOIN amazings_comments
-        ON comments.id = amazings_comments.comment_id
-        WHERE comments.post_id = ?
-        GROUP BY comments.id;
+        WHERE comments.post_id = ?;
     `;
 
     connection.query(query, params, (err, results) => {

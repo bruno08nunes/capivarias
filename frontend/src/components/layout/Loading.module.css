@@ -1,0 +1,16 @@
+@keyframes rotate {
+    to {
+        rotate: 1turn;
+    }
+}
+
+.loading {
+    margin: auto;
+    display: flex;
+    width: 50px;
+    border-radius: 50%;
+    border: 7px solid var(--light-green);
+    border-top-color: var(--white);
+    animation: rotate 1s linear infinite;
+    aspect-ratio: 1/1;
+}

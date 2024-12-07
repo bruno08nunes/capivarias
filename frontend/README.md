@@ -30,17 +30,24 @@
     1.  [useUserContext](#useusercontext)
     1.  [useUser](#useuser)
     1.  [useFormProps](#useformprops)
-    1.  [usePost](#)
+    1.  [usePosts](#usePosts)
+    1.  [usePost](#usePost)
+    1.  [useComments](#useComments)
 1.  [Contexts](#contexts)
     1.  [UserContext](#usercontext)
 1.  [Utilities](#utilities)
     1.  [getUserLoggedIn](#getuserloggedin)
     1.  [fetchUserData](#fetchuserdata)
     1.  [formatFullDate](#formatfulldate)
+    1.  [fetchAmazing](#fetchamazing)
+    1.  [fetchPosts](#fetchposts)
+    1.  [fetchPost](#fetchpost)
+    1.  [fetchComments](#fetchComments)
 
 ## Formatação e Convenções
 
 O código do frontend deve seguir as convenções abaixo:
+
 -   Separação de componentes, utilities, contexts e hooks em pastas que façam sentido;
 -   Uso de PascalCase para a nomeação dos componentes e camelCase para utilities e hooks;
 -   Uso de componentes funcionais;
@@ -62,8 +69,9 @@ Essa pasta contem os componententes de layout da aplicação, que podem ser repl
 Esse componente contém um ícone do Google Icons.
 
 Recebe como parâmetro:
-* iconName - Nome do ícone na biblioteca Google Icon
-* iconSize - Tamanho do ícone
+
+-   iconName - Nome do ícone na biblioteca Google Icon
+-   iconSize - Tamanho do ícone
 
 #### IconButton
 
@@ -176,6 +184,10 @@ Página de formulário de cadastro
 
 Página de Erro
 
+#### PostPage
+
+Página de um post em específico, juntamente com seus comentários.
+
 ### posts
 
 Componentes ligados aos posts
@@ -185,8 +197,9 @@ Componentes ligados aos posts
 Post principal
 
 Recebe como parâmetro:
-*   post - Um objeto contendo as informações da postagem
-*   setCurrentPost - Uma função que altera o post que aparecerá no modal de comentários (CommentModal).
+
+-   post - Um objeto contendo as informações da postagem
+-   setCurrentPost - Uma função que altera o post que aparecerá no modal de comentários (CommentModal).
 
 #### NewPostForm
 
@@ -213,15 +226,17 @@ Recebe como parâmetro o tempo de gravação.
 Modal de Comentário de posts que funciona usando a biblioteca Radix-UI.
 
 Recebe os parâmetros:
-*   post - Objeto com as informações da postagem necessários.
+
+-   post - Objeto com as informações da postagem necessários.
 
 ### AmazingButton
 
 Botão de curtir um post/comentário.
 
 Recebe como parâmetro:
-*   isFavorited - Se está favoritado no momento
-*   handleFavorite - Função ativada ao clicar no botão
+
+-   isFavorited - Se está favoritado no momento
+-   handleFavorite - Função ativada ao clicar no botão
 
 ## Hooks
 
@@ -256,13 +271,31 @@ Retorna:
     -   id - Id do input
     -   name - name do input, com o mesmo valor do id
 
-### usePost
+### usePosts
 
 Faz uma requisição ao servidor, retornando um estado com os posts e com o setter deles.
 
 Recebe o:
-*   ID do Usuário Logado - Serve para verificar curtidas; e
-*   ID de Usuário Dono das Postangens - Opcional
+
+-   ID do Usuário Logado - Serve para verificar curtidas; e
+-   ID de Usuário Dono das Postangens - Opcional
+
+### usePost
+
+Faz uma requisição ao servidor, retornando um estado com o post e com seu setter.
+
+Recebe o:
+
+-   ID do Post.
+
+### useComments
+
+Faz uma requisição ao servidor, retornando um estado com os comentários e seus setters.
+
+Recebe o:
+
+-   ID do Post; e
+-   ID do Usuário Logado - Serve para verificar curtidas.
 
 ## Contexts
 
@@ -287,23 +320,42 @@ Faz requisição ao servidor buscando dados do usuário.
 
 Recebe um id numérico como parâmetro.
 
-### fetchPost
+### fetchPosts
 
 Faz uma requisição ao servidor, retornando os posts.
 
 Recebe o:
-*   ID do Usuário Logado - Serve para verificar curtidas; e
-*   ID de Usuário Dono das Postangens - Opcional
+
+-   ID do Usuário Logado - Serve para verificar curtidas; e
+-   ID de Usuário Dono das Postangens - Opcional
+
+### fetchPost
+
+Faz uma requisição ao servidor, retornando o post com o id especificado.
+
+Recebe o:
+
+-   ID do Post;
+
+### fetchComments
+
+FAz uma requisição ao servidor, retornando os comentários de um post.
+
+Recebe o:
+
+-   Id do Post; e
+-   ID do Usuário Logado - Serve para verificar curtidas.
 
 ### fetchAmazing
 
 Faz uma requisição ao servidor enviando um amazing ou deletando um amazing.
 
 Recebe:
-*   data - Objeto com as informações necessárias. Contém:
-    *   user - ID do usuário
-    *   post - ID do post
-*   method - Método HTTP usado. Deve ser POST ou DELETE.
+
+-   data - Objeto com as informações necessárias. Contém:
+    -   user - ID do usuário
+    -   post - ID do post
+-   method - Método HTTP usado. Deve ser POST ou DELETE.
 
 ### formatFullDate
 

@@ -17,6 +17,7 @@ import ErrorPage from "./components/routes/ErrorPage.jsx";
 import UserContextProvider from "./contexts/UserContext.jsx";
 import AccountAnswers from "./components/routes/AccountAnswers.jsx";
 import AccountAmazings from "./components/routes/AccountAmazings.jsx";
+import PostPage from "./components/routes/PostPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
                     {
                         path: "/settings/:id",
                         element: <SettingsPage />,
+                    },
+                    {
+                        path: "/post/:id",
+                        element: <PostPage />,
                     },
                     {
                         path: "*",

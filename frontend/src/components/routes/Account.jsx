@@ -8,24 +8,26 @@ import { useParams } from "react-router-dom";
 import style from "./Account.module.css";
 import UserHeader from "../layout/UserHeader";
 import useUserContext from "../../hooks/useUserContext";
-import usePost from "../../hooks/usePost";
+import usePosts from "../../hooks/usePosts";
 import { useState } from "react";
 
 const Account = () => {
     const { id: userId } = useParams();
     const { user: userLogged } = useUserContext();
-    const { posts } = usePost(userLogged.id, userId);
+    const { posts } = usePosts(userLogged.id, userId);
     const [currentPost, setCurrentPost] = useState({});
 
     return (
         <Dialog.Root>
             <main className={style.main}>
                 <UserHeader userId={userId} />
-                {
-                    posts.map(post => (
-                        <Post post={post} setCurrentPost={setCurrentPost} key={post.id} />
-                    ))
-                }
+                {posts.map((post) => (
+                    <Post
+                        post={post}
+                        setCurrentPost={setCurrentPost}
+                        key={post.id}
+                    />
+                ))}
             </main>
             <CommentModal post={currentPost} />
         </Dialog.Root>
