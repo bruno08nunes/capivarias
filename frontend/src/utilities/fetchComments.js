@@ -1,4 +1,4 @@
-const fetchPosts = async (id, userId) => {
+const fetchComments = async (id, userId) => {
     const baseURL = "http://localhost:3000";
     const path = "/comments/all/" + id;
     const query = "?user=" + userId;
@@ -7,4 +7,4 @@ const fetchPosts = async (id, userId) => {
     return results;
 };
 
-export default fetchPosts;
+export default fetchComments;

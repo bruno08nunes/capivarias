@@ -45,7 +45,6 @@ const Register = () => {
 
         if (!results.success) {
             alert(results.message);
-            console.error(results);
             return;
         }
         const user = {

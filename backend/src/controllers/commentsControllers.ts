@@ -87,3 +87,35 @@ export const readComment = (req: Request, res: Response) => {
         });
     });
 };
+
+export const readUserComments = (req: Request, res: Response) => {
+    const params = [req.query.user, req.params.user];
+    const query = `
+        SELECT
+            comments.*,users.username, users.capy_code, users.profile_picture,
+            EXISTS (
+		        SELECT 1 
+		        FROM amazings_comments 
+		        WHERE amazings_comments.comment_id = comments.id AND amazings_comments.user_id = ?
+	        ) AS is_amazing
+        FROM comments
+        INNER JOIN users
+        ON users.id = comments.user_id
+        WHERE users.capy_code = ?
+        ORDER BY comments.updated_at DESC;`;
+
+    connection.query(query, params, (err, results) => {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Erro ao pegar comentários",
+                data: err,
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "Comentários pegos",
+            data: results,
+        });
+    });
+}

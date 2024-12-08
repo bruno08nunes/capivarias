@@ -36,8 +36,16 @@ const Post = ({ post, setCurrentPost, type = "post", ...props }) => {
 
     const handleNavigate = (e) => {
         e.stopPropagation();
+        if (type === "comment") {
+            return navigate("/post/" + (post.post_id ?? post.id.replace("c", "")));
+        }
         return navigate("/post/" + post.id);
     };
+
+    const handleUserNavigate = (e) => {
+        e.stopPropagation()
+        return navigate("/account/" + post.capy_code)
+    }
 
     return (
         <article
@@ -47,10 +55,10 @@ const Post = ({ post, setCurrentPost, type = "post", ...props }) => {
             {...props}
         >
             <div className={style.header}>
-                <ProfilePicture src={post.profile_picture} />
+                <ProfilePicture src={post.profile_picture} onClick={handleUserNavigate} />
                 <div className={style.userData}>
-                    <span>{post.username}</span>
-                    <span>@{post.capy_code}</span>
+                    <span onClick={handleUserNavigate}>{post.username}</span>
+                    <span onClick={handleUserNavigate}>@{post.capy_code}</span>
                 </div>
                 <div className={style.postData}>
                     <time dateTime="">{time}</time>

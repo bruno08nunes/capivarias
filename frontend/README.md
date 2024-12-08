@@ -33,6 +33,8 @@
     1.  [usePosts](#usePosts)
     1.  [usePost](#usePost)
     1.  [useComments](#useComments)
+    1.  [useUserComments](#useUserComments)
+    1.  [useUserAmazings](#useUserAmazings)
 1.  [Contexts](#contexts)
     1.  [UserContext](#usercontext)
 1.  [Utilities](#utilities)
@@ -43,6 +45,8 @@
     1.  [fetchPosts](#fetchposts)
     1.  [fetchPost](#fetchpost)
     1.  [fetchComments](#fetchComments)
+    1.  [fetchUserAmazings](#fetchUserAmazings)
+    1.  [fetchUserComments](#fetchUserComments)
 
 ## Formatação e Convenções
 
@@ -290,12 +294,30 @@ Recebe o:
 
 ### useComments
 
-Faz uma requisição ao servidor, retornando um estado com os comentários e seus setters.
+Faz uma requisição ao servidor, retornando um estado com os comentários de um post e seus setters.
 
 Recebe o:
 
 -   ID do Post; e
 -   ID do Usuário Logado - Serve para verificar curtidas.
+
+### useUserComments
+
+Faz uma requisição ao servidor, retornando um estado com os comentários de um usuário.
+
+Recebe:
+
+-   userId - ID do usuário cujas respostas serão mostradas; e
+-   userLoggedId - ID do usuário logado, para verificar se ele favoritou o comentário.
+
+### useUserAmazings
+
+Faz uma requisição ao servidor, retornando um estado com os amazings de um usuário.
+
+Recebe:
+
+-   userId - ID do usuário cujos amazings serão mostradas; e
+-   userLoggedId - ID do usuário logado, para verificar se ele favoritou o comentário.
 
 ## Contexts
 
@@ -366,3 +388,21 @@ Recebe como parâmetro uma data em formato de objeto Date ou string.
 Também possui uma função formatDate, que recebe um número que, caso tenha apenas um caractere, coloca um 0 no início.
 
 Também possui uma função countTime, que recebe uma data e faz uma contagem de quanto tempo passou dela até os dias atuais.
+
+### fetchUserComments
+
+Faz uma requisição ao servidor, selecionando os comentários de um usuário.
+
+Recebe:
+
+-   userId - ID do usuário cujas respostas serão mostradas; e
+-   userLoggedId - ID do usuário logado, para verificar se ele favoritou o comentário.
+
+### fetchUserAmazings
+
+Faz uma requisição ao servidor, selecionando os comentários e posts curtidos por um usuário.
+
+Recebe:
+
+-   userId - ID do usuário cujos amazings serão mostradas; e
+-   userLoggedId - ID do usuário logado, para verificar se ele favoritou o comentário.

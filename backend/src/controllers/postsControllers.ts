@@ -45,7 +45,8 @@ export const readPosts = (req: Request, res: Response) => {
         ) AS is_amazing
         FROM posts
         INNER JOIN users
-        ON users.id = posts.user_id;
+        ON users.id = posts.user_id
+        ORDER BY posts.updated_at DESC;
     `;
 
     connection.query(query, params, (err, results) => {
@@ -65,7 +66,7 @@ export const readPosts = (req: Request, res: Response) => {
 };
 
 export const readPost = (req: Request, res: Response) => {
-    const params = [req.query.user, req.params.id, req.query.user];
+    const params = [req.query.user, req.params.id];
     const query = `
         SELECT posts.*, 
 	        users.username, 

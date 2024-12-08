@@ -115,17 +115,19 @@ export const readUserPosts = (req: Request, res: Response) => {
 
     const query = `
         SELECT posts.*, users.username, users.capy_code, users.profile_picture, count(amazings.post_id),
-        CASE
-            WHEN MAX(amazings.user_id) = ? THEN true
-            ELSE false
-            END AS is_amazing
+        EXISTS (
+		        SELECT 1 
+		        FROM amazings 
+		        WHERE amazings.post_id = posts.id AND amazings.user_id = ?
+        ) AS is_amazing
         FROM posts
         INNER JOIN users
         ON users.id = posts.user_id
         LEFT JOIN amazings
         ON posts.id = amazings.post_id
         WHERE posts.user_id = ? OR users.capy_code = ?
-        GROUP BY posts.id;
+        GROUP BY posts.id
+        ORDER BY posts.updated_at DESC;
     `;
 
     connection.query(query, params, (err, results) => {
